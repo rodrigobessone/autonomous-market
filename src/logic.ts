@@ -44,22 +44,13 @@ export function createAdditionalsProducts(req: Request, res: Response) {
 export function findByIdProductList(req: Request, res: Response) {
   const id = Number(req.params.id);
   const product = market.find((product) => product.id === id);
-
-  if (product) {
     return res.status(200).json(product);
-  } else {
-    return res.status(404).json({ message: "Product not found." });
-  }
 }
 
 export function updateProducts(req: Request, res: Response) {
   const id = Number(req.params.id);
   const { name, price, weight, calories, section } = req.body;
   const index = market.findIndex((product) => product.id === id);
-
-  if (index === -1) {
-    return res.status(404).json({ message: "Product not found." });
-  }
 
   const updatedProduct = {
     ...market[index],
@@ -77,10 +68,6 @@ export function updateProducts(req: Request, res: Response) {
 export function deleteProduct(req: Request, res: Response) {
   const id = Number(req.params.id);
   const index = market.findIndex((product) => product.id === id);
-
-  if (index === -1) {
-    return res.status(404).json({ message: "Product not found." });
-  }
 
   market.splice(index, 1);
 
