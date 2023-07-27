@@ -8,7 +8,7 @@ export function checkItemById(req: Request, res: Response, next: NextFunction) {
   if (!productExists) {
     return res.status(404).json({ message: "Product not found." });
   }
-  next();
+    return next();
 }
 
 export function checkItemByName(
@@ -23,5 +23,5 @@ export function checkItemByName(
   if (productExists) {
     return res.status(409).json({ message: "Product already registered." });
   }
-  next();
+  return next();
 }
